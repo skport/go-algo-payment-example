@@ -1,0 +1,12 @@
+._*
+*~
+*.swp
+*.tar
+*.zip
+*_bak.*
+*_org.*
+.vscode/
+.DS_Store
+*.code-workspace
+
+go.sum
