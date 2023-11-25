@@ -23,14 +23,18 @@ import (
 )
 
 const (
-	// 最低手数料 1000 MicroAlgos
-	minFee = 1000
 	// ネットワークのバージョン
 	genesisId = "testnet-v1.0"
 	// 最初のブロックハッシュ (Base64)
 	genesisHash = "SGO1GKSzyE7IEPItTxCByw9x8FmnrCDexi9/cOUJOiI="
+
 	// 開始ラウンド（開始ブロックナンバー）
 	lastRound = 100000
+	// 最低手数料 1000 MicroAlgos
+	minFee = 1000
+
+	// 送金額 (MicroAlgos)
+	amount = 1000000
 )
 
 func main() {
@@ -40,11 +44,11 @@ func main() {
 	fmt.Println("Algorand FromAddress PrivateKey", hex.EncodeToString(FromAccount.PrivateKey))
 	fmt.Println("Algorand FromAddress PublicKey", hex.EncodeToString(FromAccount.PublicKey))
 
-	// 2. 送金先のアドレス構造体を作成
+	// 2. 送金先のアカウント作成
 	ToAccount := crypto.GenerateAccount()
 	fmt.Println("Algorand ToAddress", ToAccount.Address.String())
 
-	// GenesisHashを byte[] に変換
+	// GenesisHashをtypes.Digestに変換
 	var ghDigest types.Digest
 	copy(ghDigest[:], byteFromBase64(genesisHash))
 
@@ -61,7 +65,7 @@ func main() {
 		},
 		PaymentTxnFields: types.PaymentTxnFields{
 			Receiver:         ToAccount.Address,
-			Amount:           types.MicroAlgos(1000000),
+			Amount:           types.MicroAlgos(amount),
 			CloseRemainderTo: types.Address{},
 		},
 	}
