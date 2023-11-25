@@ -29,7 +29,7 @@ const (
 	genesisHash = "SGO1GKSzyE7IEPItTxCByw9x8FmnrCDexi9/cOUJOiI="
 
 	// 開始ラウンド（開始ブロックナンバー）
-	lastRound = 100000
+	startRound = 100000
 	// 最低手数料 1000 MicroAlgos
 	minFee = 1000
 
@@ -57,8 +57,8 @@ func main() {
 		Type: "pay",
 		Header: types.Header{
 			Sender:      FromAccount.Address,
-			FirstValid:  types.Round(lastRound),
-			LastValid:   types.Round(lastRound + 1000),
+			FirstValid:  types.Round(startRound),
+			LastValid:   types.Round(startRound + 1000),
 			Note:        nil,
 			GenesisID:   genesisId,
 			GenesisHash: ghDigest,
